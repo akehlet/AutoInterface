@@ -1,0 +1,12 @@
+﻿{
+  "stryker-config": {
+    "solution": "../../AutoInterface.sln",
+    "project": "SourceGenerators.csproj",
+    "ignore-methods": [
+      "ThrowIfCancellationRequested"
+    ],
+    "mutate": [
+      "!**/DebugHelper.cs"
+    ]
+  }
+}

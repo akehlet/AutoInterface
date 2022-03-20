@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>AutoInterface</AssemblyName>
+    <IsRoslynComponent>true</IsRoslynComponent>
+    <Authors>Anders Kehlet</Authors>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Kehlet.AutoInterface</PackageId>
+    <Title>AutoInterface</Title>
+    <PackFolder>analyzers\cs</PackFolder>
+    <PackageVersion>0.1.0</PackageVersion>
+    <RootNamespace>Kehlet.AutoInterface.SourceGenerators</RootNamespace>
+    <RepositoryUrl>https://github.com/akehlet/AutoInterface</RepositoryUrl>
+    <ProjectGuid>{37930A5C-E3A2-4520-A1E1-6D1964043049}</ProjectGuid>
+    <Copyright>Copyright 2022 - Anders Kehlet</Copyright>
+    <PackageProjectUrl>https://github.com/akehlet/AutoInterface</PackageProjectUrl>
+    <DevelopmentDependency>true</DevelopmentDependency>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.1" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="InterfaceGenerator.Emitter.cs">
+      <DependentUpon>InterfaceGenerator.cs</DependentUpon>
+    </Compile>
+    <Compile Update="InterfaceGenerator.Parser.cs">
+      <DependentUpon>InterfaceGenerator.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>
