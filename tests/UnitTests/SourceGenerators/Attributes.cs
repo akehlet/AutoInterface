@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Kehlet.AutoInterface.SourceGenerators;
+﻿using Kehlet.AutoInterface.SourceGenerators;
 using Xunit;
 
 namespace Kehlet.AutoInterface.UnitTests.SourceGenerators;
@@ -45,11 +44,10 @@ internal class ExcludeAttribute : Attribute { }
 ";
 
         var runnable = new IncrementalGeneratorRunner(source, new InterfaceGenerator());
-        var result = runnable.Run(out var output, out var diagnostics);
+        var result = runnable.Run(out var output);
 
-        Assert.Empty(diagnostics);
+        Assert.Empty(output.GetDiagnostics());
         Assert.Empty(result.Diagnostics);
-        Assert.Equal(expected: 2, output.SyntaxTrees.Count());
         Assert.Single(result.GeneratedTrees);
         Assert.Equal(expected, result.GeneratedTrees[0].ToString());
     }

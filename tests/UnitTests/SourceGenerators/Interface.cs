@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Kehlet.AutoInterface.SourceGenerators;
+﻿using Kehlet.AutoInterface.SourceGenerators;
 using Xunit;
 
 namespace Kehlet.AutoInterface.UnitTests.SourceGenerators;
@@ -19,11 +18,10 @@ partial record C
 ";
 
         var runnable = new IncrementalGeneratorRunner(source, new InterfaceGenerator());
-        var result = runnable.Run(out var output, out var diagnostics);
+        var result = runnable.Run(out var output);
 
-        Assert.Empty(diagnostics);
+        Assert.Empty(output.GetDiagnostics());
         Assert.Empty(result.Diagnostics);
-        Assert.Equal(expected: 2, output.SyntaxTrees.Count());
         Assert.Single(result.GeneratedTrees);
     }
 
@@ -40,11 +38,10 @@ partial record struct C
 ";
 
         var runnable = new IncrementalGeneratorRunner(source, new InterfaceGenerator());
-        var result = runnable.Run(out var output, out var diagnostics);
+        var result = runnable.Run(out var output);
 
-        Assert.Empty(diagnostics);
+        Assert.Empty(output.GetDiagnostics());
         Assert.Empty(result.Diagnostics);
-        Assert.Equal(expected: 2, output.SyntaxTrees.Count());
         Assert.Single(result.GeneratedTrees);
     }
 
@@ -63,11 +60,9 @@ private partial class C
         const string expected = "";
 
         var runnable = new IncrementalGeneratorRunner(source, new InterfaceGenerator());
-        var result = runnable.Run(out var output, out var diagnostics);
+        var result = runnable.Run(out _);
 
-        Assert.Empty(diagnostics);
         Assert.Empty(result.Diagnostics);
-        Assert.Equal(expected: 3, output.SyntaxTrees.Count());
         Assert.Equal(expected: 2, result.GeneratedTrees.Length);
         Assert.Equal(expected, result.GeneratedTrees[1].ToString());
     }
@@ -85,11 +80,10 @@ partial class C
 ";
 
         var runnable = new IncrementalGeneratorRunner(source, new InterfaceGenerator());
-        var result = runnable.Run(out var output, out var diagnostics);
+        var result = runnable.Run(out var output);
 
-        Assert.Empty(diagnostics);
+        Assert.Single(output.GetDiagnostics());
         Assert.Empty(result.Diagnostics);
-        Assert.Equal(expected: 2, output.SyntaxTrees.Count());
         Assert.Single(result.GeneratedTrees);
     }
 
@@ -115,11 +109,10 @@ public partial interface IC
 ";
 
         var runnable = new IncrementalGeneratorRunner(source, new InterfaceGenerator());
-        var result = runnable.Run(out var output, out var diagnostics);
+        var result = runnable.Run(out var output);
 
-        Assert.Empty(diagnostics);
+        Assert.Empty(output.GetDiagnostics());
         Assert.Empty(result.Diagnostics);
-        Assert.Equal(expected: 3, output.SyntaxTrees.Count());
         Assert.Equal(expected: 2, result.GeneratedTrees.Length);
         Assert.Equal(expected, result.GeneratedTrees[1].ToString());
     }
@@ -146,11 +139,10 @@ public partial interface IC
 ";
 
         var runnable = new IncrementalGeneratorRunner(source, new InterfaceGenerator());
-        var result = runnable.Run(out var output, out var diagnostics);
+        var result = runnable.Run(out var output);
 
-        Assert.Empty(diagnostics);
+        Assert.Empty(output.GetDiagnostics());
         Assert.Empty(result.Diagnostics);
-        Assert.Equal(expected: 3, output.SyntaxTrees.Count());
         Assert.Equal(expected: 2, result.GeneratedTrees.Length);
         Assert.Equal(expected, result.GeneratedTrees[1].ToString());
     }
@@ -185,11 +177,10 @@ public partial interface IC
 ";
 
         var runnable = new IncrementalGeneratorRunner(source, new InterfaceGenerator());
-        var result = runnable.Run(out var output, out var diagnostics);
+        var result = runnable.Run(out var output);
 
-        Assert.Empty(diagnostics);
+        Assert.Empty(output.GetDiagnostics());
         Assert.Empty(result.Diagnostics);
-        Assert.Equal(expected: 3, output.SyntaxTrees.Count());
         Assert.Equal(expected: 2, result.GeneratedTrees.Length);
         Assert.Equal(expected, result.GeneratedTrees[1].ToString());
     }
@@ -220,11 +211,10 @@ public partial interface IC
 ";
 
         var runnable = new IncrementalGeneratorRunner(source, new InterfaceGenerator());
-        var result = runnable.Run(out var output, out var diagnostics);
+        var result = runnable.Run(out var output);
 
-        Assert.Empty(diagnostics);
+        Assert.Empty(output.GetDiagnostics());
         Assert.Empty(result.Diagnostics);
-        Assert.Equal(expected: 3, output.SyntaxTrees.Count());
         Assert.Equal(expected: 2, result.GeneratedTrees.Length);
         Assert.Equal(expected, result.GeneratedTrees[1].ToString());
     }
@@ -259,11 +249,10 @@ public partial interface IC
 ";
 
         var runnable = new IncrementalGeneratorRunner(source, new InterfaceGenerator());
-        var result = runnable.Run(out var output, out var diagnostics);
+        var result = runnable.Run(out var output);
 
-        Assert.Empty(diagnostics);
+        Assert.Empty(output.GetDiagnostics());
         Assert.Empty(result.Diagnostics);
-        Assert.Equal(expected: 3, output.SyntaxTrees.Count());
         Assert.Equal(expected: 2, result.GeneratedTrees.Length);
         Assert.Equal(expected, result.GeneratedTrees[1].ToString());
     }
@@ -290,11 +279,10 @@ internal partial interface IC
 ";
 
         var runnable = new IncrementalGeneratorRunner(source, new InterfaceGenerator());
-        var result = runnable.Run(out var output, out var diagnostics);
+        var result = runnable.Run(out var output);
 
-        Assert.Empty(diagnostics);
+        Assert.Empty(output.GetDiagnostics());
         Assert.Empty(result.Diagnostics);
-        Assert.Equal(expected: 3, output.SyntaxTrees.Count());
         Assert.Equal(expected: 2, result.GeneratedTrees.Length);
         Assert.Equal(expected, result.GeneratedTrees[1].ToString());
     }
@@ -321,11 +309,10 @@ public partial interface IC
 ";
 
         var runnable = new IncrementalGeneratorRunner(source, new InterfaceGenerator());
-        var result = runnable.Run(out var output, out var diagnostics);
+        var result = runnable.Run(out var output);
 
-        Assert.Empty(diagnostics);
+        Assert.Empty(output.GetDiagnostics());
         Assert.Empty(result.Diagnostics);
-        Assert.Equal(expected: 3, output.SyntaxTrees.Count());
         Assert.Equal(expected: 2, result.GeneratedTrees.Length);
         Assert.Equal(expected, result.GeneratedTrees[1].ToString());
     }
@@ -352,11 +339,10 @@ public partial interface IC<T>
 ";
 
         var runnable = new IncrementalGeneratorRunner(source, new InterfaceGenerator());
-        var result = runnable.Run(out var output, out var diagnostics);
+        var result = runnable.Run(out var output);
 
-        Assert.Empty(diagnostics);
+        Assert.Empty(output.GetDiagnostics());
         Assert.Empty(result.Diagnostics);
-        Assert.Equal(expected: 3, output.SyntaxTrees.Count());
         Assert.Equal(expected: 2, result.GeneratedTrees.Length);
         Assert.Equal(expected, result.GeneratedTrees[1].ToString());
     }
@@ -383,11 +369,10 @@ public partial interface IC<out T>
 ";
 
         var runnable = new IncrementalGeneratorRunner(source, new InterfaceGenerator());
-        var result = runnable.Run(out var output, out var diagnostics);
+        var result = runnable.Run(out var output);
 
-        Assert.Empty(diagnostics);
+        Assert.Empty(output.GetDiagnostics());
         Assert.Empty(result.Diagnostics);
-        Assert.Equal(expected: 3, output.SyntaxTrees.Count());
         Assert.Equal(expected: 2, result.GeneratedTrees.Length);
         Assert.Equal(expected, result.GeneratedTrees[1].ToString());
     }
@@ -414,11 +399,10 @@ public partial interface IC<in T>
 ";
 
         var runnable = new IncrementalGeneratorRunner(source, new InterfaceGenerator());
-        var result = runnable.Run(out var output, out var diagnostics);
+        var result = runnable.Run(out var output);
 
-        Assert.Empty(diagnostics);
+        Assert.Empty(output.GetDiagnostics());
         Assert.Empty(result.Diagnostics);
-        Assert.Equal(expected: 3, output.SyntaxTrees.Count());
         Assert.Equal(expected: 2, result.GeneratedTrees.Length);
         Assert.Equal(expected, result.GeneratedTrees[1].ToString());
     }
@@ -445,11 +429,10 @@ public partial interface IC<in T, in Y>
 ";
 
         var runnable = new IncrementalGeneratorRunner(source, new InterfaceGenerator());
-        var result = runnable.Run(out var output, out var diagnostics);
+        var result = runnable.Run(out var output);
 
-        Assert.Empty(diagnostics);
+        Assert.Empty(output.GetDiagnostics());
         Assert.Empty(result.Diagnostics);
-        Assert.Equal(expected: 3, output.SyntaxTrees.Count());
         Assert.Equal(expected: 2, result.GeneratedTrees.Length);
         Assert.Equal(expected, result.GeneratedTrees[1].ToString());
     }
@@ -477,11 +460,10 @@ public partial interface IC
 ";
 
         var runnable = new IncrementalGeneratorRunner(source, new InterfaceGenerator());
-        var result = runnable.Run(out var output, out var diagnostics);
+        var result = runnable.Run(out var output);
 
-        Assert.Empty(diagnostics);
+        Assert.Empty(output.GetDiagnostics());
         Assert.Empty(result.Diagnostics);
-        Assert.Equal(expected: 3, output.SyntaxTrees.Count());
         Assert.Equal(expected: 2, result.GeneratedTrees.Length);
         Assert.Equal(expected, result.GeneratedTrees[1].ToString());
     }
@@ -510,11 +492,41 @@ public partial interface IC
 ";
 
         var runnable = new IncrementalGeneratorRunner(source, new InterfaceGenerator());
-        var result = runnable.Run(out var output, out var diagnostics);
+        var result = runnable.Run(out var output);
 
-        Assert.Empty(diagnostics);
+        Assert.Empty(output.GetDiagnostics());
         Assert.Empty(result.Diagnostics);
-        Assert.Equal(expected: 3, output.SyntaxTrees.Count());
+        Assert.Equal(expected: 2, result.GeneratedTrees.Length);
+        Assert.Equal(expected, result.GeneratedTrees[1].ToString());
+    }
+
+    [Fact]
+    public void GenerateInterfaceForClassWithTypeParameterWithClassConstraint()
+    {
+        const string source = @"
+using Kehlet.AutoInterface.Attributes;
+
+[DefaultImplementation]
+partial class C<T> where T : class
+{
+}
+";
+
+        const string expected = @"#nullable enable
+
+internal partial class C<T> : IC<T> { }
+
+public partial interface IC<T>
+    where T : class
+{
+}
+";
+
+        var runnable = new IncrementalGeneratorRunner(source, new InterfaceGenerator());
+        var result = runnable.Run(out var output);
+
+        Assert.Empty(output.GetDiagnostics());
+        Assert.Empty(result.Diagnostics);
         Assert.Equal(expected: 2, result.GeneratedTrees.Length);
         Assert.Equal(expected, result.GeneratedTrees[1].ToString());
     }

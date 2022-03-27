@@ -29,9 +29,12 @@ public partial class InterfaceGenerator
             var builder = new StringBuilder();
 
             builder.AppendLine("#nullable enable");
+            builder.AppendLine();
+
             if (@class.Namespace.Length > 0)
             {
-                builder.AppendLine($"{Environment.NewLine}namespace {@class.Namespace};");
+                builder.AppendLine($"namespace {@class.Namespace};");
+                builder.AppendLine();
             }
 
             if (AccessModifierMap(@class.Accessibility) is not { } classAccessibility)
@@ -46,8 +49,7 @@ public partial class InterfaceGenerator
 
             var typeParameters = EmitTypeParameters(@class.TypeParameters, withVariance: false);
 
-            builder.AppendLine($@"
-{classAccessibility} partial {typeKind} {@class.Name}{typeParameters} : I{@class.Name}{typeParameters} {{ }}
+            builder.AppendLine($@"{classAccessibility} partial {typeKind} {@class.Name}{typeParameters} : I{@class.Name}{typeParameters} {{ }}
 ");
 
             AppendDocs(builder, @class.Docs);
@@ -117,14 +119,14 @@ public partial class InterfaceGenerator
             builder.Append("this[");
             builder.Append(string.Join(", ", member.Parameters));
             builder.Append("] { ");
-            builder.Append(string.Join(" ", member.Accessors));
+            builder.Append(string.Join(" ", member.Accessors.Select(x => $"{x};")));
             builder.AppendLine(" }");
         }
 
         public static void AppendPropertySignature(StringBuilder builder, Member member)
         {
             builder.Append($"{member.Name} {{ ");
-            builder.Append(string.Join(" ", member.Accessors));
+            builder.Append(string.Join(" ", member.Accessors.Select(x => $"{x};")));
             builder.AppendLine(" }");
         }
 
