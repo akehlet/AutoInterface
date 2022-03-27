@@ -13,7 +13,7 @@
     <PackageId>Kehlet.AutoInterface</PackageId>
     <Title>AutoInterface</Title>
     <PackFolder>analyzers\cs</PackFolder>
-    <PackageVersion>0.1.0</PackageVersion>
+    <PackageVersion>0.1.1</PackageVersion>
     <RootNamespace>Kehlet.AutoInterface.SourceGenerators</RootNamespace>
     <RepositoryUrl>https://github.com/akehlet/AutoInterface</RepositoryUrl>
     <ProjectGuid>{37930A5C-E3A2-4520-A1E1-6D1964043049}</ProjectGuid>
