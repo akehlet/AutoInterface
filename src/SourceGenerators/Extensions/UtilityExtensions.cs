@@ -2,7 +2,7 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace AutoInterface.Extensions;
+namespace Kehlet.AutoInterface.SourceGenerators.Extensions;
 
 internal static class UtilityExtensions
 {

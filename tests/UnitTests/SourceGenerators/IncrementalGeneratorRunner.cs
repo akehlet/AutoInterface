@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis.CSharp;
 
 namespace Kehlet.AutoInterface.UnitTests.SourceGenerators;
 
-public class IncrementalGeneratorRunner
+public sealed class IncrementalGeneratorRunner
 {
     public IncrementalGeneratorRunner(string source, params IIncrementalGenerator[] generators)
     {
@@ -17,9 +17,9 @@ public class IncrementalGeneratorRunner
     public Compilation Input { get; }
     public GeneratorDriver Driver { get; }
 
-    public GeneratorDriverRunResult Run(out Compilation output, out ImmutableArray<Diagnostic> diagnostics)
+    public GeneratorDriverRunResult Run(out Compilation output)
     {
-        return Driver.RunGeneratorsAndUpdateCompilation(Input, out output, out diagnostics).GetRunResult();
+        return Driver.RunGeneratorsAndUpdateCompilation(Input, out output, out _).GetRunResult();
     }
 
     private static Compilation CreateCompilation(string source) => CSharpCompilation.Create(
